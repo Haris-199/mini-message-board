@@ -6,8 +6,7 @@ const SQL = `
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(255) NOT NULL,
     text VARCHAR(300) NOT NULL DEFAULT '',
-    add_date DATE NOT NULL DEFAULT CURRENT_DATE,
-    add_time TIME NOT NULL DEFAULT NOW()
+    add_timestamp TIMESTAMP NOT NULL DEFAULT NOW()
   );
 
   INSERT INTO messages (username, text)
