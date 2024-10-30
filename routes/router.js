@@ -6,6 +6,6 @@ const router = Router();
 router.get("/", controller.indexGet);
 router.get("/new", controller.createMessageGet);
 router.post("/new", controller.createMessagePost);
-router.get("/message/:msgIndex", controller.messageGet);
+router.get("/message/:msgID", controller.messageGet);
 
 module.exports = router;

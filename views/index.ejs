@@ -11,13 +11,13 @@
       <%= title %>
     </h1>
     <div class="messages">
-      <% messages.forEach((msg, index) => { %>
+      <% messages.forEach((msg) => { %>
         <div class="card message">
           <p><%= msg.text %></p>
-          <p><%= msg.user %></p>
-          <p><%= msg.added.toLocaleString() %></p>
+          <p><%= msg.username %></p>
+          <p><%= msg.add_timestamp.toLocaleString() %></p>
 
-          <a href="/message/<%= index %>">Open</a>
+          <a href="/message/<%= msg.id %>">Open</a>
         </div>
       <% }); %>
     </div>

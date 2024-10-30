@@ -1,27 +1,7 @@
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-  {
-    text: "What's up!",
-    user: "Alex",
-    added: new Date(),
-  },
-  {
-    text: "Zoo wee mama!",
-    user: "Rowley",
-    added: new Date(),
-  },
-];
+const db = require("../db/queries");
 
-exports.indexGet = (req, res) => {
+exports.indexGet = async (req, res) => {
+  const messages = await db.getAllMessages();
   res.render("index", { title: "Mini Messageboard", messages });
 };
 
@@ -29,16 +9,12 @@ exports.createMessageGet = (req, res) => {
   res.render("form");
 };
 
-exports.createMessagePost = (req, res) => {
-  messages.push({
-    text: req.body.text,
-    user: req.body.user,
-    added: new Date(),
-  });
+exports.createMessagePost = async (req, res) => {
+  await db.addMessage(req.body.username, req.body.text);
   res.redirect("/");
 };
 
-exports.messageGet = (req, res) => {
-  const message = messages[req.params.msgIndex];
+exports.messageGet = async (req, res) => {
+  const message = await db.getMessageByID(req.params.msgID);
   res.render("message-details", { message });
 };
