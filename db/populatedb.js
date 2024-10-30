@@ -18,11 +18,10 @@ const SQL = `
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    host: process.env.PGHOST,
-    user: process.env.USER,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: +process.env.PGPORT,
+    connectionString: `${process.env.RENDER_URL}`,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
   await client.connect();
   await client.query(SQL);
